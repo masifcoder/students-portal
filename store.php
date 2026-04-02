@@ -13,7 +13,7 @@ echo "</pre>";
     $passwrod = "";
     $database = "ticerdb";
 
-    $conn = mysqli_connect($hostname, $username, $passwrod, $database);
+    $conn = mysqli_connect($hostname, $username, $password, $database);
 
     if(!$conn) {
         die("connection failed "  . mysqli_connect_error());
