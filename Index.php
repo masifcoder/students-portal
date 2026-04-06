@@ -68,18 +68,20 @@ $result = mysqli_query($conn, $sql);
                     <th scope="col">Gender</th>
                     <th scope="col">City</th>
                     <th scope="col">Age</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
 
                 <?php while ($row = mysqli_fetch_assoc($result)) {  ?>
                     <tr>
-                        <th scope="row"> <?php echo $row['id'] ?> </th>
+                        <th><?php echo $row['id'] ?> </th>
                         <td><?php echo $row['name'] ?></td>
                         <td><?php echo $row['email'] ?></td>
                         <td><?php echo $row['gender'] ?></td>
                         <td><?php echo $row['city'] ?></td>
                         <td><?php echo $row['age'] ?></td>
+                        <td><a href="./delete.php?id=<?php echo $row['id'] ?>">delete</a></td>
                     </tr>
                 <?php }  ?>
 
