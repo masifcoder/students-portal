@@ -1,23 +1,12 @@
 <?php
-
+session_start();
 
 echo "<pre>";
-
 print_r($_POST);
-
 echo "</pre>";
 
-// 1. connect to db
-    $hostname = "localhost";
-    $username = "root";
-    $passwrod = "";
-    $database = "ticerdb";
-
-    $conn = mysqli_connect($hostname, $username, $passwrod, $database);
-
-    if(!$conn) {
-        die("connection failed "  . mysqli_connect_error());
-    }
+// incude database connection
+    require_once "db.php";
 
 // 2. collect data and validate data
     $name = $_POST['name'];
@@ -25,6 +14,14 @@ echo "</pre>";
     $city = $_POST['city'];
     $gender = $_POST['gender'];
     $email  = $_POST['email'];
+
+    if( !isset($name) || empty($name)) {
+        $_SESSION['name_error'] = "Name field is required";
+        header("Location: add_student.php");
+        exit;
+    }
+
+
 
 // 3. prepare query
     $sql = "INSERT INTO students (name, email, city, age, gender) VALUES('$name', '$email', '$city', '$age', '$gender') ";

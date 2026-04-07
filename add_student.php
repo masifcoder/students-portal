@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!doctype html>
 <html lang="en">
 
@@ -21,6 +22,9 @@
             <div class="mb-3">
                 <label for="namelabel" class="form-label">Name</label>
                 <input type="text" name="name" class="form-control" id="namelabel" placeholder="student name">
+                <?php if(isset($_SESSION['name_error'] ) && !empty($_SESSION['name_error'] )) { ?>
+                    <div class="alert alert-danger"> <?php echo $_SESSION['name_error']; unset($_SESSION['name_error']) ?> </div>
+                <?php } ?>
             </div>
             <div class="mb-3">
                 <label for="amailaddress" class="form-label">Email address</label>
