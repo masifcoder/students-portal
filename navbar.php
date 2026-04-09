@@ -15,8 +15,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact US</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./login_form.php">Login</a>
+                        </li>
                          <li class="nav-item">
                             <a class="nav-link" href="./register_form.php">Register</a>
+                        </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="./logout.php">Logout</a>
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
