@@ -9,29 +9,9 @@ if (!isset($_SESSION['is_login']) || $_SESSION['is_login'] !== true) {
 
 require_once "db.php";
 
-// total students
-$sql = "SELECT * FROM students LIMIT 5";
+$sql = "SELECT * FROM students";
 $result = mysqli_query($conn, $sql);
 $total_students = mysqli_num_rows($result);
-
-// total male students
-$sql_m = "SELECT * FROM students where gender = 'male'";
-$result_m = mysqli_query($conn, $sql_m);
-$total_students_m = mysqli_num_rows($result_m);
-
-
-// total female students
-$sql_f = "SELECT * FROM students where gender = 'female'";
-$result_f = mysqli_query($conn, $sql_f);
-$total_students_f = mysqli_num_rows($result_f);
-
-// total registered users
-$sql_u = "SELECT * FROM users";
-$result_u = mysqli_query($conn, $sql_u);
-$total_users = mysqli_num_rows($result_u);
-
-
-
 mysqli_data_seek($result, 0);
 ?>
 
@@ -214,70 +194,34 @@ mysqli_data_seek($result, 0);
     <!-- Content -->
     <div class="content">
         <div class="container my-4">
-            <h1>Ticer Students Dashboard</h1>
-        </div>
-
-        <div class="container my-4">
-            <div class="row">
-
-                <!-- Card 1 -->
-                <div class="col-md-3">
-                    <div class="card-box">
-                        <div class="icon-box icon-blue">
-                            <i class="bi bi-people"></i>
-                        </div>
-                        <div>
-                            <p class="card-title"><?php echo $total_students ?></p>
-                            <p class="card-text">Total Students</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-md-3">
-                    <div class="card-box">
-                        <div class="icon-box icon-green">
-                            <i class="bi bi-mortarboard"></i>
-                        </div>
-                        <div>
-                            <p class="card-title"><?php echo $total_students_m ?></p>
-                            <p class="card-text">Male Students</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-md-3">
-                    <div class="card-box">
-                        <div class="icon-box icon-purple">
-                            <i class="bi bi-calendar-check"></i>
-                        </div>
-                        <div>
-                            <p class="card-title"><?php echo $total_students_f ?></p>
-                            <p class="card-text">Female Students</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="col-md-3">
-                    <div class="card-box">
-                        <div class="icon-box icon-dark">
-                            <i class="bi bi-person-badge"></i>
-                        </div>
-                        <div>
-                            <p class="card-title"><?php echo $total_users ?></p>
-                            <p class="card-text">Users</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            <h1>All College Students</h1>
         </div>
 
         <!-- Table -->
         <div class="container">
             <h5 class="mb-3">Students List</h5>
+
+            <div class="">
+                <form method="GET">
+
+                    <div class="mb-4 row g-3 align-items-center">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" name="search" autocomplete="off" />
+                        </div>
+                        <div class="col-auto">
+                            <select name="gender" id="genderSelect" class="form-select">
+                                <option value="all">All Students</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </div>
+
+                        <div class="col-auto">
+                            <button class="btn btn-sm btn-warning">Search</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
             <div class="card-box">
 
