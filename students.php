@@ -9,10 +9,40 @@ if (!isset($_SESSION['is_login']) || $_SESSION['is_login'] !== true) {
 
 require_once "db.php";
 
+// get search query
+// echo "<pre>";
+// print_r($_GET);
+// echo "</pre>";
+
+$search = (isset($_GET['search']) && !empty($_GET['search'])) ?  $_GET['search'] :  NULL;
+$gender = (isset($_GET['gender']) && !empty($_GET['gender']) &&  $_GET['gender'] != 'all') ?  $_GET['gender'] :  NULL;
+
+
+
+// search query SELECT * FROM `students` WHERE `name` LIKE '%ali%'
+// gender query SELECT * FROM `students` WHERE `gender` = 'male'
+
 $sql = "SELECT * FROM students";
+
+// concate gender
+if ($gender != NULL && $search === NULL) {
+    $sql .= " WHERE `gender` = '$gender'";
+
+} else if ($gender == NULL && $search != NULL) {
+    $sql .= " WHERE name LIKE '%$search%' ";
+
+}else if ($search !== NULL && $gender !== NULL) {
+    $sql .= " WHERE gender='$gender' AND name LIKE '%$search%' ";
+}
+
+
+
 $result = mysqli_query($conn, $sql);
 $total_students = mysqli_num_rows($result);
 mysqli_data_seek($result, 0);
+
+
+
 ?>
 
 <!doctype html>
@@ -203,7 +233,6 @@ mysqli_data_seek($result, 0);
 
             <div class="">
                 <form method="GET">
-
                     <div class="mb-4 row g-3 align-items-center">
                         <div class="col-auto">
                             <input type="text" class="form-control" name="search" autocomplete="off" />
@@ -217,7 +246,8 @@ mysqli_data_seek($result, 0);
                         </div>
 
                         <div class="col-auto">
-                            <button class="btn btn-sm btn-warning">Search</button>
+                            <button class="btn btn-sm btn-warning me-2">Search</button>
+                            <a href="./students.php" class="btn btn-sm btn-warning">All Students</a>
                         </div>
                     </div>
                 </form>

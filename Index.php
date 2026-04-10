@@ -10,9 +10,10 @@ if (!isset($_SESSION['is_login']) || $_SESSION['is_login'] !== true) {
 require_once "db.php";
 
 // total students
-$sql = "SELECT * FROM students LIMIT 5";
+$sql = "SELECT * FROM students";
 $result = mysqli_query($conn, $sql);
 $total_students = mysqli_num_rows($result);
+
 
 // total male students
 $sql_m = "SELECT * FROM students where gender = 'male'";
@@ -30,6 +31,10 @@ $sql_u = "SELECT * FROM users";
 $result_u = mysqli_query($conn, $sql_u);
 $total_users = mysqli_num_rows($result_u);
 
+
+// limit 5 students
+$sql5 = "SELECT * FROM students LIMIT 5";
+$result5 = mysqli_query($conn, $sql5);
 
 
 mysqli_data_seek($result, 0);
@@ -291,12 +296,11 @@ mysqli_data_seek($result, 0);
                                 <th>Gender</th>
                                 <th>City</th>
                                 <th>Age</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                            <?php while ($row = mysqli_fetch_assoc($result5)) { ?>
                                 <tr>
                                     <td><?php echo $row['id']; ?></td>
                                     <td><?php echo htmlspecialchars($row['name']); ?></td>
@@ -312,11 +316,6 @@ mysqli_data_seek($result, 0);
 
                                     <td><?php echo ucfirst($row['city']); ?></td>
                                     <td><?php echo $row['age']; ?></td>
-
-                                    <td>
-                                        <a href="update_form.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
-                                    </td>
                                 </tr>
                             <?php } ?>
                         </tbody>
