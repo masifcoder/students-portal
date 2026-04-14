@@ -260,6 +260,7 @@ mysqli_data_seek($result, 0);
                         <thead>
                             <tr>
                                 <th>#</th>
+                                <th>Image</th>
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
@@ -273,6 +274,9 @@ mysqli_data_seek($result, 0);
                             <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                                 <tr>
                                     <td><?php echo $row['id']; ?></td>
+                                    <td>
+                                        <img src="./uploads/<?php echo $row['photo']; ?>" width="40" />
+                                    </td>
                                     <td><?php echo htmlspecialchars($row['name']); ?></td>
                                     <td><?php echo htmlspecialchars($row['email']); ?></td>
 

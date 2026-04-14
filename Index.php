@@ -118,6 +118,9 @@ mysqli_data_seek($result, 0);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 15px;
         }
 
         /* Table */
@@ -138,16 +141,6 @@ mysqli_data_seek($result, 0);
 
         .btn-sm {
             padding: 4px 10px;
-        }
-    </style>
-    <style>
-        .card-box {
-            border-radius: 15px;
-            padding: 15px 20px;
-            background: #f8f9fa;
-            display: flex;
-            align-items: center;
-            gap: 15px;
         }
 
         .icon-box {
@@ -328,7 +321,6 @@ mysqli_data_seek($result, 0);
         </div>
 
     </div>
-
 </body>
 
 </html>
