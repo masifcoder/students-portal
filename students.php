@@ -264,8 +264,6 @@ mysqli_data_seek($result, 0);
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Gender</th>
-                                <th>City</th>
-                                <th>Age</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -287,12 +285,9 @@ mysqli_data_seek($result, 0);
                                             <span class="badge badge-female">Female</span>
                                         <?php } ?>
                                     </td>
-
-                                    <td><?php echo ucfirst($row['city']); ?></td>
-                                    <td><?php echo $row['age']; ?></td>
-
                                     <td>
                                         <a href="update_form.php?id=<?php echo $row['id']; ?>" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="student_profile.php?id=<?php echo $row['id']; ?>" class="btn btn-info btn-sm">View</a>
                                         <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                                     </td>
                                 </tr>
